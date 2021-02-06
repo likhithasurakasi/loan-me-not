@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="/icon.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Loan Me Not</title>
+  </head>
+  <body>
+    <!-- TOP NAVIGATION -->
+    <nav>
+      <p class="welcome">Log in to get started</p>
+      <img src="logo.png" alt="Logo" class="logo" />
+      <form class="login">
+        <input
+          type="text"
+          placeholder="user"
+          class="login__input login__input--user"
+        />
+        <!-- In practice, use type="password" -->
+        <input
+          type="text"
+          placeholder="PIN"
+          maxlength="4"
+          class="login__input login__input--pin"
+        />
+        <button class="login__btn">&rarr;</button>
+      </form>
+    </nav>
+
+    <!-- SIGN UP  -->
+
+    <nav id="signup">
+      <p class="signup__label">Sign Up for New User</p>
+      <form class="signupform">
+        <input
+          type="text"
+          placeholder="name"
+          class="signup__input signup__input--name"
+        />
+        <div class="signup">
+          <input
+            type="text"
+            placeholder="user"
+            class="signup__input signup__input--user"
+          />
+          <!-- In practice, use type="password" -->
+          <input
+            type="text"
+            placeholder="PIN"
+            maxlength="4"
+            class="signup__input signup__input--pin"
+          />
+        </div>
+        <button class="signup__btn">&rarr;</button>
+      </form>
+    </nav>
+    <main class="app">
+      <!-- BALANCE -->
+      <div class="balance">
+        <div>
+          <p class="balance__label">Current balance</p>
+          <p class="balance__date">
+            As of <span class="date">05/03/2037</span>
+          </p>
+        </div>
+        <p class="balance__value">0000€</p>
+      </div>
+
+      <!-- MOVEMENTS -->
+      <div class="movements">
+        <div class="movements__row">
+          <div class="movements__type movements__type--deposit">
+            loan me not
+          </div>
+          <div class="movements_unflex">
+            <div class="movements__date">
+              <span style="font-size: 1.5rem">🕰</span> 3 days ago
+            </div>
+            <div class="movements__person">
+              <span style="font-size: 1.5rem">😈</span> Geetha
+            </div>
+            <div class="movements__deets">
+              <span style="font-size: 1.5rem">💰</span> for dominos
+            </div>
+          </div>
+          <div class="movements__value">4 000€</div>
+        </div>
+        <div class="movements__row">
+          <div class="movements__type movements__type--withdrawal">loan me</div>
+          <div class="movements_unflex" style="margin-left: 20px">
+            <div class="movements__date">
+              <span style="font-size: 1.5rem">🕰</span> 3 days ago
+            </div>
+            <div class="movements__person">
+              <span style="font-size: 1.5rem">😈</span> Geetha
+            </div>
+            <div class="movements__deets">
+              <span style="font-size: 1.5rem">💰</span> for dominos
+            </div>
+          </div>
+          <div class="movements__value">-378€</div>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="summary">
+        <p class="summary__label">In</p>
+        <p class="summary__value summary__value--in">0000€</p>
+        <p class="summary__label">Out</p>
+        <p class="summary__value summary__value--out">0000€</p>
+        <button class="btn--sort">&downarrow; SORT</button>
+      </div>
+
+      <!-- OPERATION: TRANSFERS -->
+      <div class="operation operation--transfer">
+        <h2>loaned to</h2>
+        <form class="form form--transfer">
+          <div style="width: 72%; margin-left: -5px">
+            <input
+              type="text"
+              class="form__input form__input--name"
+              placeholder="name"
+              style="margin-bottom: 5px"
+            />
+            <input
+              type="number"
+              class="form__input form__input--amount"
+              placeholder="amt"
+            />
+          </div>
+          <div style="margin-left: -40px">
+            <input
+              type="text"
+              class="form__input form__input--date"
+              placeholder="when(mm/dd/yyyy)"
+              style="margin-bottom: 5px"
+            />
+            <input
+              type="text"
+              class="form__input form__input--why"
+              placeholder="why"
+            />
+          </div>
+          <button
+            class="form__btn form__btn--transfer"
+            style="margin: 15px 0px"
+          >
+            &rarr;
+          </button>
+        </form>
+      </div>
+
+      <!-- OPERATION: LOAN -->
+      <div class="operation operation--loan">
+        <h2>borrowed from</h2>
+        <form class="form form--loan">
+          <div style="width: 72%; margin-left: -5px">
+            <input
+              type="text"
+              class="form__input form__input-loan--name"
+              placeholder="name"
+              style="margin-bottom: 5px"
+            />
+            <input
+              type="number"
+              class="form__input form__input-loan--amount"
+              placeholder="amt"
+            />
+          </div>
+          <div style="margin-left: -40px">
+            <input
+              type="text"
+              class="form__input form__input-loan--date"
+              placeholder="when(mm/dd/yyyy)"
+              style="margin-bottom: 5px"
+            />
+            <input
+              type="text"
+              class="form__input form__input-loan--why"
+              placeholder="why"
+            />
+          </div>
+          <button class="form__btn form__btn--loan" style="margin: 15px 0px">
+            &rarr;
+          </button>
+        </form>
+      </div>
+
+      <!-- OPERATION: CLOSE -->
+      <div class="operation operation--close">
+        <h2>Close account</h2>
+        <form class="form form--close">
+          <input type="text" class="form__input form__input--user" />
+          <input
+            type="password"
+            maxlength="6"
+            class="form__input form__input--pin"
+          />
+          <button class="form__btn form__btn--close">&rarr;</button>
+          <label class="form__label">Confirm user</label>
+          <label class="form__label">Confirm PIN</label>
+        </form>
+      </div>
+      <button class="form__btn form__btn--save">
+        <span class="material-icons"> logout </span>
+      </button>
+      <!-- LOGOUT TIMER -->
+    </main>
+    <!-- <footer>
+      &copy; by Jonas Schmedtmann. Don't claim as your own :)
+    </footer> -->
+
+    <script src="script.js"></script>
+  </body>
+</html>
