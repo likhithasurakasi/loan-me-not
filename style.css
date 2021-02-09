@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: #444;
   background-color: #f3f3f3;
   height: 100vh;
@@ -36,8 +36,13 @@ nav {
   font-weight: 500;
 }
 
-.logo {
+.logo,
+.logo__top {
   height: 5.25rem;
+}
+
+.logo__top {
+  display: none;
 }
 
 .login,
@@ -95,9 +100,8 @@ nav {
 
 #signup {
   margin-top: 100px;
-  float: right;
+  margin-left: -70px;
   display: block;
-  transition: all 1s;
 }
 
 .signupform {
@@ -105,7 +109,6 @@ nav {
 }
 
 .signup {
-  /* align-items: center; */
   justify-content: center;
 }
 
@@ -115,7 +118,7 @@ nav {
 }
 .signup__input--name {
   margin-bottom: 30px;
-  width: 25rem;
+  width: 24rem;
 }
 
 .signup__btn {
@@ -132,7 +135,7 @@ nav {
   gap: 2rem;
   /* NOTE This creates the fade in/out anumation */
   opacity: 0;
-  transition: all 1s;
+  /* transition: all 1s; */
 }
 
 .balance {
@@ -296,11 +299,11 @@ h2 {
 .form__input {
   width: 100%;
   border: none;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: #ffffff59;
   font-family: inherit;
   font-size: 1rem;
   text-align: center;
-  color: #333;
+  color: rgb(54, 53, 53);
   padding: 0.5rem 1rem;
   border-radius: 0.7rem;
   transition: all 0.3s;
@@ -308,7 +311,7 @@ h2 {
 
 .form__input:focus {
   outline: none;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(255, 255, 255, 0.918);
 }
 
 .form__label {
@@ -332,7 +335,7 @@ h2 {
 
 .form__btn:focus {
   outline: none;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 240, 0.767);
 }
 
 .logout-timer {
@@ -347,6 +350,87 @@ h2 {
 }
 
 .form__btn--save {
-  float: right;
   text-align: right;
+}
+
+.form__input::placeholder {
+  color: rgba(3, 3, 3, 0.582);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 425px) {
+  body {
+    text-align: center;
+  }
+  .logo__top {
+    display: inline;
+  }
+  nav {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .logo {
+    display: none;
+  }
+  .welcome {
+    margin-top: 20px;
+  }
+  .login {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  #signup {
+    margin-top: 50px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .app {
+    margin-top: 80px;
+  }
+  .balance {
+    grid-column: 1 / -1;
+    display: block;
+  }
+  .movements {
+    grid-column: 1 / -1;
+  }
+  .operation {
+    grid-column: 1 /-1;
+  }
+
+  .summary {
+    grid-column: 1/-1;
+  }
+  .movements__row {
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+  }
+  .movements__type {
+    width: 6rem;
+    text-align: center;
+  }
+  .operation {
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    color: #333;
+  }
+  /* .form__input::placeholder {
+    color: rgba(3, 3, 3, 0.582);
+    font-size: 0.8rem;
+  } */
+  .form__btn--save {
+    grid-column: 2;
+  }
+}
+@media (max-width: 768px) {
+  .operation {
+    padding: 2rem 2rem;
+  }
 }
