@@ -78,6 +78,7 @@ const containerApp = document.querySelector(".app");
 const containerMovements = document.querySelector(".movements");
 const navSignup = document.getElementById("signup");
 const containerLogin = document.querySelector(".login");
+const overlay = document.querySelector(".overlay");
 
 const btnLogin = document.querySelector(".login__btn");
 const btnTransfer = document.querySelector(".form__btn--transfer");
@@ -148,15 +149,21 @@ btnLogin.addEventListener("click", function (e) {
     inputLoginPin.blur();
     // Update UI
     updateUI(currentAccount);
+  } else {
+    displayError();
+    return;
   }
 });
 btnTransfer.addEventListener("click", function (e) {
   e.preventDefault();
   const name = inputTransferName.value;
   const why = inputTranferWhy.value;
-  const date = new Date(inputTransferDate.value);
+  const date = new Date(inputTransferDate.value).getTime();
   const amount = Number(inputTransferAmount.value);
-  if (!validInput(name, why) || amount <= 0 || !date == "Invalid Date") return;
+  if (!validInput(name, why) || amount <= 0 || !isFinite(date)) {
+    displayError();
+    return;
+  }
   const movement = new Movement(name, amount, date, why, "deposit");
   currentAccount.movements.push(movement);
   inputTransferAmount.value = inputTransferName.value = inputTranferWhy.value = inputTransferDate.value =
@@ -169,9 +176,12 @@ btnLoan.addEventListener("click", function (e) {
   e.preventDefault();
   const name = inputLoanName.value;
   const why = inputLoanWhy.value;
-  const date = new Date(inputLoanDate.value);
+  const date = new Date(inputLoanDate.value).getTime();
   const amount = Number(inputLoanAmount.value);
-  if (!validInput(name, why) || amount <= 0 || !date == "Invalid Date") return;
+  if (!validInput(name, why) || amount <= 0 || !isFinite(date)) {
+    displayError();
+    return;
+  }
   const movement = new Movement(name, -amount, date, why, "withdrawal");
   currentAccount.movements.push(movement);
   inputLoanAmount.value = inputLoanName.value = inputLoanWhy.value = inputLoanDate.value =
@@ -201,6 +211,8 @@ btnClose.addEventListener("click", function (e) {
     // Hide UI
     setLocalStorage();
     containerApp.style.opacity = 0;
+  } else {
+    displayError();
   }
 
   inputCloseUsername.value = inputClosePin.value = "";
@@ -217,7 +229,10 @@ btnSignup.addEventListener("click", function (e) {
   const username = inputSignupUsername.value;
   const pin = inputSignupPin.value;
 
-  if (!validInput(owner, username) || !isFinite(pin)) return;
+  if (!validInput(owner, username) || !isFinite(pin)) {
+    displayError();
+    return;
+  }
   const account = new Account(owner, Number(pin), username);
   currentAccount = account;
   accounts.push(account);
@@ -282,10 +297,15 @@ const displayMovements = function (acc, sort = false) {
     ? acc.movements.slice().sort((a, b) => a.amount - b.amount)
     : acc.movements;
 
-  movs.forEach(function (mov) {
+  movs.forEach(function (mov, i) {
     const displayDate = formatMovementDate(mov.date, currentAccount.locale);
     const html = `
-    <div class="movements__row">
+    <div class="movements__row" data-src=${i}>
+    <div class="clear">
+    <span class="material-icons" style="font-size: 1.6rem">
+      clear
+    </span>
+  </div>
     <div class="movements__type movements__type--${mov.type}">
       ${mov.type === "deposit" ? "loan me not" : "loan me"}
     </div>
@@ -355,7 +375,23 @@ const updateUI = function (acc) {
 const setLocalStorage = function () {
   localStorage.setItem("accounts", JSON.stringify(accounts));
 };
+const displayError = function () {
+  overlay.style.display = "block";
+  setTimeout(function () {
+    overlay.style.display = "none";
+  }, 2000);
+};
 
+containerMovements.addEventListener("click", function (e) {
+  const link = e.target;
+  if (link.closest(".clear")) {
+    const src = link.closest(".movements__row").dataset.src;
+    console.log(src);
+    console.log(currentAccount.movements.splice(src));
+    setLocalStorage();
+    updateUI(currentAccount);
+  }
+});
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
