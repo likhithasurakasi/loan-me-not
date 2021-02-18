@@ -216,9 +216,13 @@ nav {
 .clear {
   margin-top: -65px;
   margin-left: -20px;
-  position: fixed;
+  /* position: absolute; */
   color: grey;
   background-color: white;
+  cursor: pointer;
+}
+.clear span {
+  font-size: 1.1rem;
 }
 /* SUMMARY */
 .summary {
@@ -424,7 +428,7 @@ h2 {
   }
 
   .app {
-    margin-top: 80px;
+    margin-top: 50px;
   }
   .balance {
     grid-column: 1 / -1;
@@ -440,6 +444,9 @@ h2 {
   .summary {
     grid-column: 1/-1;
   }
+  .summary__value {
+    font-size: 1.12rem;
+  }
   .movements__row {
     padding: 1rem 1rem;
     display: flex;
@@ -448,7 +455,7 @@ h2 {
     text-align: left;
   }
   .movements__type {
-    width: 6rem;
+    width: 7.5rem;
     text-align: center;
   }
   .operation {
@@ -462,6 +469,14 @@ h2 {
   } */
   .form__btn--save {
     grid-column: 2;
+  }
+
+  .clear {
+    margin-top: -65px;
+    margin-left: -5px;
+  }
+  .clear {
+    font-size: 0.5rem;
   }
 }
 @media (max-width: 768px) {

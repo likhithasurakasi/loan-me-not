@@ -107,7 +107,7 @@ const inputSignupPin = document.querySelector(".signup__input--pin");
 /////////////////////////////////////////////
 
 let currentAccount;
-let sorted = false;
+let sorted;
 
 /// EVENT HANDLERS
 btnLogin.addEventListener("click", function (e) {
@@ -139,7 +139,8 @@ btnLogin.addEventListener("click", function (e) {
       month: "long",
       year: "numeric",
     };
-
+    // set sorted to false
+    sorted = false;
     labelDate.textContent = new Intl.DateTimeFormat(
       currentAccount.locale,
       options
@@ -302,7 +303,7 @@ const displayMovements = function (acc, sort = false) {
     const html = `
     <div class="movements__row" data-src=${i}>
     <div class="clear">
-    <span class="material-icons" style="font-size: 1.6rem">
+    <span class="material-icons" >
       clear
     </span>
   </div>
